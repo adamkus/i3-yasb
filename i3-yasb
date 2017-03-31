@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+
+set_time_limit(0);
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use \Akus\YASB\Config;
+use \Akus\YASB\Application;
+use \Akus\YASB\FormatFactory;
+use \Akus\YASB\BlocksFactory;
+
+$userConfigPath = getenv('HOME') . '/.config/i3-yasb/config.yml';
+
+$configPath = $argv[1] ?? (file_exists($userConfigPath) ? $userConfigPath : null);
+
+$config = (new Config($configPath))->parse();
+
+$formatFactory = new FormatFactory();
+$blocksFactory = new BlocksFactory($formatFactory);
+
+$blocks = [];
+foreach ($config['blocks'] as $block) {
+    $blocks[] = $blocksFactory->getFromArray($block);
+}
+
+$application = new Application($config['interval'], $blocks);
+$application->run();
+
+return 0;

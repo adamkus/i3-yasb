@@ -1,0 +1,23 @@
+{
+  "name": "adamkus/i3-yasb",
+  "type": "i3-status-bar",
+  "description": "Yet Another Status Bar for i3-wm",
+  "keywords": ["i3", "i3-wm", "i3-bar"],
+  "homepage": "https://github.com/adamkus/i3-yasb",
+  "license": "DBAD",
+  "authors": [
+    {
+      "name": "Adam Kus",
+      "email": "yasb@adamkus.pl"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "symfony/yaml": "=3.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Akus\\YASB\\": "src/Akus/YASB/"
+    }
+  }
+}

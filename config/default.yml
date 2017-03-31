@@ -1,0 +1,79 @@
+interval: 1
+
+default_block_format:
+  icon: ""
+  icon_color: "#cdcdcd"
+  text_color: "#cdcdcd"
+  background_color: ""
+  border_color: "#cdcdcd"
+  border_top: 0
+  border_right: 0
+  border_bottom: 2
+  border_left: 0
+  min_width: 0
+  align: "center"
+  urgent: false
+  separator: true
+  separator_block_width: 10
+
+blocks:
+  vlc:
+    name: "VLC"
+    type: "text-file"
+    path: "/tmp/i3-yasb/vlc"
+    format:
+      icon: ""
+      icon_color: "#7fdbff"
+      border_color: "#7fdbff"
+  spotify:
+    name: "Spotify"
+    type: "text-file"
+    path: "/tmp/i3-yasb/spotify"
+    format:
+      icon: ""
+      icon_color: "#7fdbff"
+      border_color: "#7fdbff"
+  volume:
+    name: "Volume"
+    type: "command"
+    command: "amixer get Master | awk '$0~/%/{print $5}' | tr -d '[]' | tail -n1"
+    format:
+      icon: ""
+      icon_color: "#7fdbff"
+      border_color: "#7fdbff"
+  wifi:
+    # @todo: to be moved to timers / services
+    name: "Wifi"
+    type: "command"
+    command: "iwgetid -r"
+    format:
+      icon: ""
+      icon_color: "#ffb347"
+      border_color: "#ffb347"
+  networks:
+    # @todo: to be moved to timers / services
+    name: "Networks"
+    type: "command"
+    command: "netctl list | grep \"\\*\" | sed \"s/\\\\ //g\" | sed \"s/\\*//g\" | sed ':a;N;$!ba;s/\\n/, /g'"
+    format:
+      icon: ""
+      icon_color: "#ffb347"
+      border_color: "#ffb347"
+  battery:
+    name: "Battery"
+    type: "text-file"
+    path: "/tmp/i3-yasb/battery"
+    format:
+      icon: ""
+      icon_color: "#dea5a4"
+      border_color: "#dea5a4"
+  date_time:
+    name: "DateTime"
+    type: "command"
+    command: "date '+%Y-%m-%d %H:%M:%S'"
+    format:
+      icon: ""
+      icon_color: "#cb99c9"
+      border_color: "#cb99c9"
+
+# @todo: rest - cpu, mem, disk
